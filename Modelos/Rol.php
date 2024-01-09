@@ -9,7 +9,20 @@ class Rol
 	// Metodos
 	
 	# Sobrecarga de contructores
-		public function __construct(){}
+		public function __construct()
+		{
+			$a = func_get_args();
+			$i = func_num_args();
+			if (method_exists($this, $f = '__construct' . $i)) {
+				call_user_func_array(array($this, $f), $a);
+			}                
+		}
+
+		public function __construct2($rolCode,$rolName)
+		{
+			$this -> rolCode = $rolCode;
+			$this -> rolName = $rolName;
+		}
 
 	# Metodos Set() y Get()
 
@@ -26,15 +39,15 @@ class Rol
 			}
 
 		#rolName: Set()
-		public function setRolName($rolCode)
-		{
-			$this -> rolCode = $rolCode;
-		}
+			public function setRolName($rolName)
+			{
+				$this -> rolName = $rolName;
+			}
 
 		#rolName: Get()
 			public function getRolName()
 			{
-				return $this -> rolCode;
+				return $this -> rolName;
 			}
 
 	// *************** 2da Parte: Persistencia BD (CRUD) ************** //
