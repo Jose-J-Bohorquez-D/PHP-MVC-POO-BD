@@ -1,9 +1,13 @@
 <?php 
 
-require_once("Controladores/Users.php");
+require_once("Modelos/DataBase.php");
+#test database
+#$db = DataBase::connection();
 
-$controlador = new Users();
+require_once("Controladores/Roles.php");
 
-$controlador -> createUser();
+$controlador = new Roles();
+
+$controlador -> createRol();
 
  ?>

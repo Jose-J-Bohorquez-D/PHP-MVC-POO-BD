@@ -12,6 +12,8 @@ class Roles
 
 	public function createRol()
 	{
+
+		/*
 		// objeto 1
 		$rol_1 = new Rol;
 		$rol_1 -> setRolCode("1");
@@ -35,12 +37,19 @@ class Roles
 		echo "Codigo Rol: " . $rol_3 -> getRolCode();
 		echo "<br>";
 		echo "Administrador: " . $rol_3 -> getRolName();
+		*/
 
 		# objeto 4 - contructor
 		# objeto 5 - constructor
 		# utilizar una estructura de repeticion para mostrar los objetos
-		
-
+		#vid 20231020 proyecto mvc users
+		$rol = new Rol(
+			null,
+			"Customer"
+		);
+		#test para revisar datos
+		#print_r($rol);
+		$rol -> rolCreate();
 	}
 
 

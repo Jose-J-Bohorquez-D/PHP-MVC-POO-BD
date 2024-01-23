@@ -24,9 +24,16 @@
              $database = "appwebphp";
              $username = "root";
              $password = "";
-	 		$pdo = new PDO("mysql:host=$hostname;port=$port;dbname=$database;charset=utf8",$username,$password);
-	 		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	 		return $pdo;
+             try {
+                $pdo = new PDO("mysql:host=$hostname;port=$port;dbname=$database;charset=utf8",$username,$password);
+                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                # test de conexión
+                #echo "conexion exitosa a base de datos: $database";
+                return $pdo;
+             } catch (Exception $e) {
+                 echo "error de conexión";
+             }
+	 		
 	 	}
 	 }
 ?>
