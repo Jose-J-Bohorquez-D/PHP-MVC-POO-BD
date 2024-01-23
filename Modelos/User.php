@@ -4,14 +4,14 @@ class User
 {
 	// ************************ 1ra Parte: (POO) ************************ //
 	// Atributos 
-		private $rolCode;
-		private $rolName;
-		private $userCode;
-		private $userName;
-		private $userLastName;
-		private $userEmail;
-		private $userPass;
-		private $userStatus;
+		protected $rolCode;
+		protected $rolName;
+		protected $userCode;
+		protected $userName;
+		protected $userLastName;
+		protected $userEmail;
+		protected $userPass;
+		protected $userStatus;
 
 	// Metodos
 	

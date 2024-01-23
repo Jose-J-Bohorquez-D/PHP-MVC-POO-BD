@@ -6,6 +6,7 @@ class Users
 {
 	public function __construct(){}
 
+	#crear usuario	
 	public function createUser()
 	{
 		// objeto 1
@@ -43,10 +44,13 @@ class Users
 
 	}
 
+	#listar usuario
 	public function readUser(){}
 
+	#actualizar usuario	
 	public function updateUser(){}
 
+	#eliminar usuario
 	public function delUser(){}
 }
 
