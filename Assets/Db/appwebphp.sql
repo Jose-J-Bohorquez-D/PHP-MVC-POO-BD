@@ -1,4 +1,4 @@
- DROP DATABASE appwebphp;
+# DROP DATABASE appwebphp;
 -- -----------------------------------------------------
 -- Estructura appwebphp
 -- -----------------------------------------------------

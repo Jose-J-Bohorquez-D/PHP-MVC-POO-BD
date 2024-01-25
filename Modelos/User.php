@@ -4,6 +4,7 @@ class User
 {
 	// ************************ 1ra Parte: (POO) ************************ //
 	// Atributos 
+		private $dbh;
 		protected $rolCode;
 		protected $rolName;
 		protected $userCode;
@@ -18,11 +19,16 @@ class User
 	# Sobrecarga de contructores
 		public function __construct()
 		{
-			$a = func_get_args();
-			$i = func_num_args();
-			if (method_exists($this, $f = '__construct' . $i)) {
-				call_user_func_array(array($this, $f), $a);
-			}                
+			try {
+                $this->dbh = DataBase::connection();
+                $a = func_get_args();
+                $i = func_num_args();
+                if (method_exists($this, $f = '__construct' . $i)) {
+                    call_user_func_array(array($this, $f), $a);
+                }
+            } catch (Exception $e) {
+                die($e->getMessage());
+            }                
 		}
 
 		public function __construct8($rolCode,$rolName,$userCode,$userName,$userLastName,$userEmail,$userPass,$userStatus)
@@ -80,13 +86,13 @@ class User
 			}
 
 		#rolName: Set()
-			public function setrolName($rolName)
+			public function setRolName($rolName)
 			{
 				$this -> rolName = $rolName;
 			}
 
 		#rolName: Get()
-			public function getrolName()
+			public function getRolName()
 			{
 				return $this -> rolName;
 			}
@@ -146,13 +152,13 @@ class User
 			}
 
 		#userPass: Get()
-			public function getuserPass()
+			public function getUserPass()
 			{
 				return $this -> userPass;
 			}
 
 		#userStatus: Set()
-			public function setuserStatus($userStatus)
+			public function setUserStatus($userStatus)
 			{
 				$this -> userStatus = $userStatus;
 			}
@@ -164,9 +170,23 @@ class User
 			}
 
 	// *************** 2da Parte: Persistencia BD (CRUD) ************** //
-	public function rolCreate()
+	public function userCreate()
 	{
-		echo "hola mundo <br>";
+		try {
+            $sql = 'INSERT INTO USUARIOS VALUES (:rolCode,:userCode,:userName,
+            									 :userLastName,:userEmail,:userPass,:userStatus)';
+            $stmt = $this->dbh->prepare($sql);
+            $stmt->bindValue('rolCode', $this->getRolCode());
+            $stmt->bindValue('userCode', $this->getUserCode());           
+            $stmt->bindValue('userName', $this->getUserName());
+            $stmt->bindValue('userLastName', $this->getUserLastName());
+            $stmt->bindValue('userEmail', $this->getUserEmail());
+            $stmt->bindValue('userPass', $this->getUserPass());
+            $stmt->bindValue('userStatus', $this->getUserStatus());                
+            $stmt->execute();
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
 	}
 
 
